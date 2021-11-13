@@ -12,12 +12,11 @@ function ContactList() {
 
   return (
     <ul className={s.list}>
-      {contacts.map((id, name, number) => (
+      {contacts.map(({ id, name, number }) => (
         <li className={s.item} key={id}>
-          <span className={s.name}>{name}: </span>
-          <a href={`tel:${number}`} className={s.number}>
-            {number}
-          </a>
+          <p className={s.text}>
+            {name}: {number}
+          </p>
           <button
             type="button"
             onClick={() => onDeleteContact(id)}
