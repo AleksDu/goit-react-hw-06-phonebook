@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../redux/app/contact-actions";
 import { getVisibleContacts } from "../../redux/app/contact-selector";
+import { ReactComponent as DeleteIcon } from "../../icons/remove.svg";
 
 import s from "./ContactList.module.css";
 
@@ -20,8 +21,11 @@ function ContactList() {
           <button
             type="button"
             onClick={() => onDeleteContact(id)}
+            aria-label="Delete contact"
             className={s.button}
-          ></button>
+          >
+            <DeleteIcon width="20px" height="20px" fill="#a9a1a1" />
+          </button>
         </li>
       ))}
     </ul>
