@@ -12,7 +12,13 @@ function ContactForm() {
     dispatch(contactActions.addContact(name, number));
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const contactCheck = () => {
+
+  // Метод на отправке формы. Формирует из стейта контакт и передает во внешний метод
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName("");
+    setNumber("");
+
     const nameList = contacts.reduce(
       (acc, contact) => [...acc, contact.name],
       []
@@ -21,26 +27,17 @@ function ContactForm() {
       (acc, contact) => [...acc, contact.number],
       []
     );
-    if (nameList.includes(name) ?? numberList.includes(numberList)) {
-      alert(`$(name)$(number) alsoy yet in contacts`);
+    if (nameList.includes(name) ?? numberList.includes(number)) {
+      alert(`${name}${number} alsoy yet in contacts`);
+      return;
     }
+
     if (name === "" ?? number === "") {
       alert("Put something ");
     }
-  };
 
-  // Метод на отправке формы. Формирует из стейта контакт и передает во внешний метод
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setName("");
-    setNumber("");
-    if (contactCheck()) {
-      return;
-    }
     onSubmit(name, number);
   };
-
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <label className={s.label}>
